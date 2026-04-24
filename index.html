@@ -476,7 +476,7 @@
   .ws-cal {
     position: relative;
     display: grid;
-    grid-template-columns: 64px repeat(7, 1fr);
+    grid-template-columns: 64px repeat(7, minmax(0, 1fr));
     grid-template-rows: 48px repeat(12, 56px);
     background: var(--almost-wh);
     border: 1px solid var(--ws-line);
@@ -553,9 +553,26 @@
   .ws-pill-bad { background: #FDE3DB; border-color: #F5C6B8; color: #D6452B; }
   .ws-foot { margin-top: 14px; text-align: center; font-size: 13px; color: var(--dark); }
   @media (max-width: 860px) {
-    .ws-cal { grid-template-columns: 48px repeat(7, minmax(78px, 1fr)); overflow-x: auto; }
-    .ws-events-layer { left: 48px; }
-    .ws-event-inner { padding: 8px 10px 12px; font-size: 12px; }
+    .ws-cal {
+      grid-template-columns: 40px repeat(7, minmax(0, 1fr));
+      grid-template-rows: 36px repeat(12, 48px);
+    }
+    .ws-events-layer { left: 40px; top: 36px; }
+    .ws-head { font-size: 11px; letter-spacing: 0 !important; }
+    .ws-time { font-size: 10px; padding-right: 4px; }
+    .ws-event { padding: 2px; }
+    .ws-event-inner { padding: 6px 6px 10px; font-size: 11px; line-height: 1.2; border-radius: 8px; }
+    .ws-event-sub { display: none; }
+    .ws-event-grip { width: 16px; height: 2px; bottom: 4px; }
+    .ws-hand-hint { display: none; }
+  }
+  @media (max-width: 440px) {
+    .ws-cal { grid-template-columns: 32px repeat(7, minmax(0, 1fr)); }
+    .ws-events-layer { left: 32px; }
+    .ws-head { font-size: 10px; }
+    .ws-head-weekend { font-size: 9px; }
+    .ws-event-inner { padding: 4px 4px 8px; font-size: 10px; }
+    .ws-event-grip { display: none; }
   }
 
   /* ============ FOOTER ============ */
