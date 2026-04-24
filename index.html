@@ -410,19 +410,35 @@
   .t-attribution span { color: var(--dark); font-size: 13px; line-height: 1.4; }
 
   /* ============ WHAT YOU GAIN ============ */
-  .gain-grid { display: grid; grid-template-columns: minmax(0, 680px) 1fr; gap: 48px; align-items: start; }
-  .gain-intro { font-size: 16px; color: var(--dark); line-height: 1.55; margin-bottom: 32px; max-width: 560px; }
-  .gain-list { list-style: none; border-top: 1px solid var(--hairline); }
+  .gain-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: 72px;
+    align-items: start;
+  }
+  .gain-left { max-width: 520px; position: sticky; top: 88px; }
+  .gain-left .h2 { font-size: 32px; line-height: 1.15; margin-bottom: 22px; }
+  .gain-intro { font-size: 16px; color: var(--dark); line-height: 1.6; margin-bottom: 0; }
+  .gain-list { list-style: none; border-top: 1px solid var(--hairline); counter-reset: gain-item; }
   .gain-list li {
-    display: grid; grid-template-columns: 18px 1fr; gap: 14px;
-    padding: 20px 0;
+    display: grid; grid-template-columns: 56px 1fr; gap: 24px;
+    padding: 26px 0;
     border-bottom: 1px solid var(--hairline);
-    font-size: 15px; line-height: 1.55; color: var(--dark);
+    font-size: 16px; line-height: 1.6; color: var(--dark);
+    align-items: baseline;
   }
   .gain-list li::before {
-    content: "•";
-    font-size: 18px; font-weight: 700; color: var(--dark);
-    line-height: 1.3;
+    content: counter(gain-item, decimal-leading-zero);
+    counter-increment: gain-item;
+    font-size: 12px; font-weight: 600; color: var(--dark);
+    letter-spacing: 0.18em;
+    font-feature-settings: "tnum";
+    padding-top: 2px;
+  }
+  @media (max-width: 900px) {
+    .gain-grid { grid-template-columns: 1fr; gap: 40px; }
+    .gain-left { position: static; max-width: none; }
+    .gain-left .h2 { font-size: 28px; }
   }
 
   /* ============ CTA STRIP (DarkBG — purple-bg forbidden by brand) ============ */
@@ -681,19 +697,18 @@
 <section class="section" id="outcomes">
   <div class="wrap">
     <div class="gain-grid">
-      <div>
+      <div class="gain-left">
         <div class="eyebrow">What you gain</div>
         <h2 class="h2">Not every AI investment pays off. Learn to choose the right ones, lead the change, and make it last.</h2>
         <p class="gain-intro">This programme gives you the skills to make smarter AI decisions, drive adoption across your organisation, and build a strategy that holds up — fully funded through the Apprenticeship Levy.</p>
-        <ul class="gain-list">
-          <li>Make evidence-based AI investment and procurement decisions — and know what the vendor pitch isn't telling you.</li>
-          <li>Design a governance framework that embeds accountability and transparency into your organisation's decision-making.</li>
-          <li>Manage AI risk within your existing enterprise risk framework, with monitoring that catches problems before they become incidents.</li>
-          <li>Lead cross-functional AI-enabled change — redesigning workflows, assessing workforce impacts, and guiding your teams through adoption.</li>
-          <li>Represent your organisation in external AI conversations with regulators, partners and sector bodies — with the authority that comes from doing this work, not just reading about it.</li>
-        </ul>
       </div>
-      <div></div>
+      <ul class="gain-list">
+        <li>Make evidence-based AI investment and procurement decisions — and know what the vendor pitch isn't telling you.</li>
+        <li>Design a governance framework that embeds accountability and transparency into your organisation's decision-making.</li>
+        <li>Manage AI risk within your existing enterprise risk framework, with monitoring that catches problems before they become incidents.</li>
+        <li>Lead cross-functional AI-enabled change — redesigning workflows, assessing workforce impacts, and guiding your teams through adoption.</li>
+        <li>Represent your organisation in external AI conversations with regulators, partners and sector bodies — with the authority that comes from doing this work, not just reading about it.</li>
+      </ul>
     </div>
   </div>
 </section>
