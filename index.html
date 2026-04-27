@@ -73,7 +73,7 @@
     --section-y: 96px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; overflow-x: hidden; }
+  html { scroll-behavior: smooth; overflow-x: clip; }
   body {
     font-family: "Noi Grotesk", "Inter", Arial, "Helvetica Neue", Helvetica, sans-serif;
     color: var(--dark);
@@ -82,7 +82,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: normal;
-    overflow-x: hidden;
+    overflow-x: clip;
     max-width: 100vw;
   }
   img, svg { max-width: 100%; }
@@ -112,22 +112,37 @@
   nav {
     position: sticky; top: 0; z-index: 50;
     background: var(--dark);
-    border-bottom: 1px solid var(--hairline-dark);
     color: var(--almost-wh);
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
   }
+  nav.is-light {
+    background: var(--almost-wh);
+    color: var(--dark);
+    border-bottom: 1px solid var(--hairline);
+  }
+  nav.is-light .logo,
+  nav.is-light .links { color: var(--dark); }
+  nav.is-light .links a:hover { color: var(--purple); }
+  nav.is-light .boom-wordmark { filter: invert(1) hue-rotate(180deg); }
+  nav.is-light .cta { background: var(--purple); color: var(--almost-wh); }
+  nav.is-light .cta:hover { background: var(--purple-hover); }
   nav .wrap {
-    display: flex; align-items: center; justify-content: space-between;
-    padding-top: 16px; padding-bottom: 16px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 24px;
+    padding-top: 18px; padding-bottom: 18px;
   }
   .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 14px; letter-spacing: -0.01em; color: var(--almost-wh); }
-  .logo .boom-wordmark { height: 32px; width: auto; display: block; }
-  nav .links { display: flex; gap: 32px; font-size: 14px; color: var(--almost-wh); }
-  nav .links a { opacity: 1; }
+  .logo .boom-wordmark { height: 36px; width: auto; display: block; }
+  nav .links { display: flex; justify-content: center; gap: 36px; font-size: 15px; color: var(--almost-wh); font-weight: 400; }
+  nav .links a { opacity: 1; display: inline-flex; align-items: center; gap: 6px; }
   nav .links a:hover { color: var(--light-purp); }
+  nav .links .caret { width: 7px; height: 4px; opacity: 0.9; }
   .cta {
     display: inline-flex; align-items: center; justify-content: center;
     background: var(--purple); color: var(--almost-wh);
-    padding: 12px 16px; border-radius: 8px;
+    padding: 12px 18px; border-radius: 10px;
     font-size: 15px; font-weight: 500; line-height: 20px;
     min-height: 44px;
     transition: background 0.2s;
@@ -136,37 +151,86 @@
   .cta.ghost { background: transparent; color: var(--dark); border: 1px solid var(--dark); }
   .cta.ghost:hover { background: var(--dark); color: var(--almost-wh); }
 
-  /* ============ HERO (dark banner, brand-compliant) ============ */
+  /* ============ HERO (dark banner, two-column) ============ */
   .hero-dark {
     background: var(--dark); color: var(--almost-wh);
-    padding: 96px 0;
+    padding: 80px 0 96px;
+  }
+  .hero-dark .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: 64px; align-items: center; }
+  .hero-dark .date-pill {
+    display: inline-block;
+    border: 1px solid var(--almost-wh);
+    border-radius: 6px;
+    padding: 6px 16px;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--almost-wh);
+    margin-bottom: 36px;
   }
   .hero-dark h1 {
-    font-size: 100px;
+    font-size: 72px;
     line-height: 1;
     font-weight: 500;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
     color: var(--almost-wh);
-    margin-bottom: 32px;
-    max-width: 1050px;
+    margin-bottom: 24px;
   }
   .hero-dark .sub {
-    font-size: clamp(18px, 1.4vw, 20px);
-    line-height: 1.45;
+    font-size: 22px;
+    line-height: 1.4;
     color: var(--almost-wh);
-    max-width: 640px;
-    margin-bottom: 40px;
+    max-width: 540px;
+    margin-bottom: 56px;
     font-weight: 400;
   }
   .hero-dark .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
-  .hero-dark .cta { padding: 12px 16px; font-size: 15px; }
+  .hero-dark .cta { padding: 12px 18px; font-size: 15px; }
   .cta.ghost-dark {
     background: transparent; color: var(--almost-wh);
-    border: 1px solid rgba(255,254,245,0.3);
+    border: 1.5px solid var(--almost-wh);
   }
-  .cta.ghost-dark:hover { background: rgba(255,254,245,0.06); }
+  .cta.ghost-dark:hover { background: rgba(255,254,245,0.08); }
 
-  /* Trust strip — standalone light section under the hero */
+  /* Hero feature checklist box */
+  .feature-box {
+    border: 1.5px dashed rgba(255,254,245,0.55);
+    border-radius: 14px;
+    padding: 44px 48px;
+  }
+  .feature-box ul { list-style: none; display: flex; flex-direction: column; gap: 22px; }
+  .feature-box li { display: flex; align-items: center; gap: 16px; color: var(--almost-wh); font-size: 17px; line-height: 1.4; }
+  .feature-box .check {
+    flex: 0 0 auto;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--almost-wh); color: var(--dark);
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .feature-box .check svg { width: 12px; height: 12px; display: block; }
+
+  @media (max-width: 900px) {
+    .hero-dark { padding: 56px 0 72px; }
+    .hero-dark .wrap { grid-template-columns: 1fr; gap: 40px; }
+    .hero-dark h1 { font-size: 48px; }
+    .hero-dark .sub { font-size: 18px; margin-bottom: 36px; }
+    .feature-box { padding: 28px 28px; }
+  }
+
+  /* ============ MENTORS LOGOS STRIP ============ */
+  .mentors-strip { background: #2E2937; color: var(--almost-wh); padding: 56px 0 48px; }
+  .mentors-strip .lead { text-align: center; font-size: 16px; color: var(--almost-wh); margin-bottom: 32px; font-weight: 500; }
+  .mentor-logos { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 56px; margin-bottom: 40px; }
+  .mentor-logos img { height: 36px; width: auto; opacity: 0.95; filter: brightness(0) invert(1); display: block; }
+  .mentor-logos img.cambridge, .mentor-logos img.oxford { filter: brightness(0) invert(1); height: 44px; }
+  .yc-row { display: flex; align-items: center; justify-content: center; gap: 14px; font-size: 16px; color: var(--almost-wh); }
+  .yc-row img { height: 28px; width: auto; }
+  @media (max-width: 700px) {
+    .mentor-logos { gap: 28px; }
+    .mentor-logos img { height: 28px; }
+    .mentor-logos img.cambridge, .mentor-logos img.oxford { height: 32px; }
+  }
+
+  /* (legacy trust strip kept for back-compat) */
   .trust-strip { padding: 40px 0; background: #302A38; color: var(--almost-wh); }
   .trust {
     display: flex; flex-wrap: wrap;
@@ -214,6 +278,83 @@
   .pos-card .by { font-size: 14px; color: var(--dark); margin-top: 8px; font-weight: 600; }
 
   /* ============ UNIT CARDS ============ */
+  /* ============ PROGRAMME OVERVIEW ============ */
+  .overview { background: var(--almost-wh); }
+  .overview-title { font-size: 64px; line-height: 1.05; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 24px; }
+  .overview-lede { font-size: 20px; line-height: 1.45; color: var(--dark); max-width: 640px; margin-bottom: 80px; }
+  .overview-sub { font-size: 32px; line-height: 1.15; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 24px; margin-top: 0; }
+  .overview .tool-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 80px; }
+  .tool-pill {
+    display: inline-flex; align-items: center;
+    border: 1px solid var(--dark); border-radius: 999px;
+    padding: 8px 18px; font-size: 15px; color: var(--dark); font-weight: 400;
+    background: transparent;
+  }
+  .unit-accordion { margin-top: 8px; margin-bottom: 48px; border-top: 1px solid var(--dark); }
+  .unit-row { border-bottom: 1px solid var(--dark); }
+  .unit-row > summary {
+    display: grid; grid-template-columns: 56px 1fr auto;
+    align-items: center; gap: 16px;
+    padding: 28px 8px;
+    cursor: pointer; list-style: none;
+    font-size: 22px; font-weight: 500; color: var(--dark); letter-spacing: -0.01em;
+  }
+  .unit-row > summary::-webkit-details-marker { display: none; }
+  .unit-row .unit-num { font-size: 20px; font-weight: 500; color: var(--dark); font-variant-numeric: tabular-nums; }
+  .unit-row .unit-title { line-height: 1.3; }
+  .unit-row .unit-chev { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; color: var(--dark); transition: transform .2s; }
+  .unit-row .unit-chev svg { width: 40px; height: 40px; display: block; }
+  .unit-row[open] .unit-chev { transform: rotate(180deg); }
+  .unit-body { padding: 0 8px 28px 80px; }
+  .unit-body p { font-size: 16px; line-height: 1.55; color: var(--dark); margin-bottom: 16px; max-width: 820px; }
+  .unit-meta { display: flex; flex-wrap: wrap; gap: 24px; font-size: 16px; color: var(--dark); }
+  .unit-meta b { font-weight: 600; font-size: 16px; margin-right: 6px; }
+  .curriculum-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    border: 1.5px solid var(--orange); color: var(--orange);
+    border-radius: 8px; padding: 12px 18px;
+    font-size: 15px; font-weight: 500; background: transparent;
+  }
+  .curriculum-btn svg { width: 20px; height: 20px; display: block; }
+  .curriculum-btn:hover { background: var(--orange); color: var(--almost-wh); }
+
+  @media (max-width: 760px) {
+    .overview-title { font-size: 40px; }
+    .overview-sub { font-size: 24px; }
+    .unit-row > summary { grid-template-columns: 40px 1fr auto; font-size: 17px; padding: 22px 4px; }
+    .unit-body { padding-left: 52px; }
+  }
+
+  /* ============ BOOK A DISCOVERY CALL ============ */
+  .book-call .book-call-grid {
+    display: grid; grid-template-columns: 1.05fr 1fr;
+    gap: 80px; align-items: start;
+  }
+  .book-call h2 {
+    font-size: 72px; line-height: 1.05;
+    font-weight: 500; letter-spacing: -0.02em;
+    color: var(--dark); margin-bottom: 32px;
+  }
+  .book-call-cta { padding: 12px 22px; }
+  .book-call-list { list-style: none; display: flex; flex-direction: column; gap: 36px; padding-top: 12px; }
+  .book-call-list li {
+    display: grid; grid-template-columns: 32px 1fr; gap: 24px;
+    align-items: start;
+    font-size: 20px; line-height: 1.4; color: var(--dark);
+  }
+  .book-call-list .arrow {
+    display: inline-flex; align-items: center; justify-content: flex-start;
+    width: 32px; height: 28px; color: var(--dark);
+  }
+  .book-call-list .arrow svg { width: 24px; height: 24px; display: block; }
+
+  @media (max-width: 860px) {
+    .book-call .book-call-grid { grid-template-columns: 1fr; gap: 48px; }
+    .book-call h2 { font-size: 48px; }
+    .book-call h2 br { display: none; }
+    .book-call-list li { font-size: 17px; gap: 16px; }
+  }
+
   .units { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
   .unit {
     background: var(--almost-wh); border: 1px solid var(--hairline); border-radius: 16px;
@@ -651,47 +792,51 @@
 </nav>
 
 <!-- ============ HERO (dark banner) ============ -->
-<section class="hero-dark">
+<section class="hero-dark" data-nav-theme="dark">
   <div class="wrap">
-    <h1>AI Leadership</h1>
-    <p class="sub">Build the skills, strategy and judgment to lead AI transformation.</p>
-    <div class="ctas">
-      <a href="https://cal.com/jaikharbanda/30min" class="cta primary">Book a discovery call</a>
-      <a href="#units" class="cta ghost-dark">See curriculum</a>
+    <div class="hero-copy">
+      <span class="date-pill">May 2026</span>
+      <h1>AI Leadership</h1>
+      <p class="sub">Build the skills, strategy and judgment to lead AI transformation</p>
+      <div class="ctas">
+        <a href="https://cal.com/jaikharbanda/30min" class="cta primary">Book a discovery call</a>
+        <a href="#units" class="cta ghost-dark">See curriculum</a>
+      </div>
+    </div>
+    <div class="feature-box">
+      <ul>
+        <li><span class="check"><svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 6.5L4.7 9L10 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Expected duration - 12 weeks</li>
+        <li><span class="check"><svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 6.5L4.7 9L10 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>3 modules</li>
+        <li><span class="check"><svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 6.5L4.7 9L10 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Blended learning model</li>
+        <li><span class="check"><svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 6.5L4.7 9L10 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Hands-on AI experience to lead by example</li>
+        <li><span class="check"><svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 6.5L4.7 9L10 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>1:1 mentoring and community access</li>
+        <li><span class="check"><svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 6.5L4.7 9L10 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Fully funded with Levy funding</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- ============ TRUST STRIP ============ -->
-<section class="trust-strip">
+<!-- ============ MENTORS LOGOS ============ -->
+<section class="mentors-strip" data-nav-theme="dark">
   <div class="wrap">
-    <div class="trust">
-      <div class="trust-item">
-        <div class="trust-label">Trustpilot</div>
-        <div class="trust-score"><span class="star">★</span>4.9 / 5</div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-label">Course Report</div>
-        <div class="trust-score"><span class="star">★</span>4.9 / 5</div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-label">UK apprenticeship quality</div>
-        <div class="trust-score">Ofsted Good</div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-label">UK apprenticeship QAR</div>
-        <div class="trust-score">Higher-than-average</div>
-      </div>
-      <div class="trust-item yc-item">
-        <div class="trust-label">Backed by</div>
-        <div class="trust-score"><span class="yc-mark" aria-hidden="true">Y</span>Y&nbsp;Combinator</div>
-      </div>
+    <p class="lead">Mentors bring first-hand experience from companies and universities such as:</p>
+    <div class="mentor-logos">
+      <img class="cambridge" src="https://cdn.prod.website-files.com/67e119ca88293b07f55b074e/67e1687c4e329e7586537918_edu-cambridge.png" alt="University of Cambridge">
+      <img class="oxford" src="https://cdn.prod.website-files.com/67e119ca88293b07f55b074e/67e1687c4e329e758653791d_edu-oxford-uni.png" alt="University of Oxford">
+      <img src="https://cdn.prod.website-files.com/67e119ca88293b07f55b074e/67e1687c4e329e7586537916_edu-google.svg" alt="Google">
+      <img src="https://cdn.prod.website-files.com/67e119ca88293b07f55b074e/67e1687c4e329e7586537917_edu-amazon.svg" alt="Amazon">
+      <img src="https://cdn.prod.website-files.com/67e119ca88293b07f55b074e/67e1687c4e329e758653791a_edu-meta.svg" alt="Meta">
+      <img src="https://cdn.prod.website-files.com/67e119ca88293b07f55b074e/67e1687c4e329e758653791b_edu-spotify.svg" alt="Spotify">
+      <img src="https://cdn.prod.website-files.com/67e119ca88293b07f55b074e/67e1687c4e329e758653791c_edu-vinted.svg" alt="Vinted">
+    </div>
+    <div class="yc-row">
+      <img src="https://cdn.prod.website-files.com/67e119ca88293b07f55b074e/67e54d81aa62f2f02ab69f0a_y-combinator.svg" alt="Backed by Y Combinator">
     </div>
   </div>
 </section>
 
 <!-- ============ POSITIONING ============ -->
-<section class="section cream" id="positioning">
+<section class="section cream" id="positioning" data-nav-theme="light">
   <div class="wrap">
     <h2 class="h2">Why this sits with senior leadership — not technology.</h2>
     <p class="lede intro">Three reasons AI Leadership Units are the right vehicle for senior leaders in a regulated bank in 2026.</p>
@@ -725,7 +870,7 @@
 </section>
 
 <!-- ============ WHAT YOU GAIN ============ -->
-<section class="section" id="outcomes">
+<section class="section" id="outcomes" data-nav-theme="light">
   <div class="wrap">
     <div class="gain-grid">
       <div class="gain-left">
@@ -744,57 +889,102 @@
   </div>
 </section>
 
-<!-- ============ UNITS ============ -->
-<section class="section" id="units">
+<!-- ============ PROGRAMME OVERVIEW ============ -->
+<section class="section overview" id="units" data-nav-theme="light">
   <div class="wrap">
-    <div class="eyebrow">Skills England AU0009 · AU0010 · AU0011 · Level 5</div>
-    <h2 class="h2">Three units. Fifteen topics. A clean progression.</h2>
+    <h2 class="h2 overview-title">Programme overview</h2>
+    <p class="overview-lede">Training is delivered online over 12 weeks, in focused sessions and projects that apply directly to your role. Every learner has a personal tutor and access to industry mentors throughout.</p>
 
-    <div class="units">
-      <!-- AU0009 — Strategy and Opportunity -->
-      <div class="unit">
-        <div class="ref">UNIT 01 · AU0009</div>
-        <h3>AI Strategy and Opportunity</h3>
-        <p class="desc"><strong>Discover AI transformation opportunities and build a strategy to act on them.</strong> Explore the AI landscape, link AI capability to your business goals, assess risk, prototype solutions, and engage stakeholders to build organisational buy-in.</p>
-        <div class="meta">
-          <div><div class="k">Duration</div><div class="v">30 hours</div></div>
-          <div><div class="k">Topics</div><div class="v">5</div></div>
-          <div><div class="k">Funding</div><div class="v">Levy eligible</div></div>
-          <div><div class="k">Start</div><div class="v">May 2026</div></div>
-        </div>
-      </div>
-
-      <!-- AU0010 — Adoption, Procurement and Governance -->
-      <div class="unit">
-        <div class="ref">UNIT 02 · AU0010</div>
-        <h3>AI Adoption, Procurement and Governance</h3>
-        <p class="desc"><strong>Design a detailed AI transformation plan.</strong> Select and evaluate AI tools and providers, involve stakeholders in testing, address compliance and ethical risks, and plan for workforce changes ahead of implementation.</p>
-        <div class="meta">
-          <div><div class="k">Duration</div><div class="v">30 hours</div></div>
-          <div><div class="k">Topics</div><div class="v">5</div></div>
-          <div><div class="k">Funding</div><div class="v">Levy eligible</div></div>
-          <div><div class="k">Start</div><div class="v">June 2026</div></div>
-        </div>
-      </div>
-
-      <!-- AU0011 — Delivery and Organisational Transformation -->
-      <div class="unit">
-        <div class="ref">UNIT 03 · AU0011</div>
-        <h3>AI Delivery and Organisational Transformation</h3>
-        <p class="desc"><strong>Lead AI-enabled change with confidence.</strong> Implement transformation strategies, support your teams through the transition, monitor for bias and security risks, and respond to shifting regulatory requirements.</p>
-        <div class="meta">
-          <div><div class="k">Duration</div><div class="v">30 hours</div></div>
-          <div><div class="k">Topics</div><div class="v">5</div></div>
-          <div><div class="k">Funding</div><div class="v">Levy eligible</div></div>
-          <div><div class="k">Start</div><div class="v">July 2026</div></div>
-        </div>
-      </div>
+    <h3 class="overview-sub">Tools and languages</h3>
+    <div class="tool-pills">
+      <span class="tool-pill">Claude</span>
+      <span class="tool-pill">Claude Code</span>
+      <span class="tool-pill">Lovable</span>
+      <span class="tool-pill">ChatGPT</span>
+      <span class="tool-pill">Microsoft Copilot</span>
+      <span class="tool-pill">Google Gemini</span>
     </div>
+
+    <h3 class="overview-sub">The three units at a glance</h3>
+    <div class="unit-accordion">
+      <details class="unit-row">
+        <summary>
+          <span class="unit-num">01</span>
+          <span class="unit-title">Discover: AI Strategy and Opportunity (AU0009)</span>
+          <span class="unit-chev" aria-hidden="true">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 27L20 12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M12 20.1973L19.8984 28.0957L27.7969 20.1973" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </span>
+        </summary>
+        <div class="unit-body">
+          <p>Understand the AI landscape and make confident investment decisions. Explore AI opportunities, evaluate tools and suppliers with structured criteria, navigate procurement and toolstack design, and build AI-powered solutions using tools like Claude Code and Lovable.</p>
+          <div class="unit-meta">
+            <span><b>Duration:</b> 30 hours</span>
+            <span><b>Topics:</b> 5</span>
+            <span><b>Funding:</b> Levy eligible</span>
+            <span><b>Start:</b> May 2026</span>
+          </div>
+        </div>
+      </details>
+
+      <details class="unit-row">
+        <summary>
+          <span class="unit-num">02</span>
+          <span class="unit-title">Design: AI Adoption, Procurement and Governance (AU0010)</span>
+          <span class="unit-chev" aria-hidden="true">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 27L20 12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M12 20.1973L19.8984 28.0957L27.7969 20.1973" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </span>
+        </summary>
+        <div class="unit-body">
+          <p>Build the governance and risk foundations for responsible AI use. Design accountability frameworks and approval pipelines, embed AI risk into enterprise governance, and establish assurance, audit readiness and incident response processes.</p>
+          <div class="unit-meta">
+            <span><b>Duration:</b> 30 hours</span>
+            <span><b>Topics:</b> 5</span>
+            <span><b>Funding:</b> Levy eligible</span>
+            <span><b>Start:</b> June 2026</span>
+          </div>
+        </div>
+      </details>
+
+      <details class="unit-row">
+        <summary>
+          <span class="unit-num">03</span>
+          <span class="unit-title">Implement: AI Delivery and Organisational Transformation (AU0011)</span>
+          <span class="unit-chev" aria-hidden="true">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 27L20 12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M12 20.1973L19.8984 28.0957L27.7969 20.1973" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </span>
+        </summary>
+        <div class="unit-body">
+          <p>Lead AI-enabled change and represent your organisation with confidence. Drive cross-functional transformation, assess workforce impacts, support upskilling, and engage credibly with regulators, partners and the public.</p>
+          <div class="unit-meta">
+            <span><b>Duration:</b> 30 hours</span>
+            <span><b>Topics:</b> 5</span>
+            <span><b>Funding:</b> Levy eligible</span>
+            <span><b>Start:</b> July 2026</span>
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <a href="#schedule" class="curriculum-btn">
+      <span>Get full curriculum</span>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M14.1435 5.89174C13.7879 5.53609 13.2113 5.53609 12.8556 5.89174C12.5 6.2474 12.5 6.82403 12.8556 7.17968L16.7652 11.0892H4.84821C4.34524 11.0892 3.9375 11.497 3.9375 11.9999C3.9375 12.5029 4.34524 12.9107 4.84821 12.9107H16.7652L12.8556 16.8203C12.5 17.1759 12.5 17.7525 12.8556 18.1082C13.2113 18.4639 13.7879 18.4639 14.1435 18.1082L19.6078 12.6439C19.9635 12.2883 19.9635 11.7117 19.6078 11.356L14.1435 5.89174Z" fill="currentColor"/>
+      </svg>
+    </a>
   </div>
 </section>
 
 <!-- ============ ELIGIBILITY ============ -->
-<section class="section" id="eligibility">
+<section class="section" id="eligibility" data-nav-theme="light">
   <div class="wrap">
     <div class="eyebrow">Eligibility &amp; funding</div>
     <h2 class="h2">Eligibility, in plain English.</h2>
@@ -821,41 +1011,40 @@
   </div>
 </section>
 
-<!-- ============ FLEXIBLE WEEKLY SCHEDULE ============ -->
-<section class="section cream" id="schedule">
+<!-- ============ BOOK A DISCOVERY CALL ============ -->
+<section class="section cream book-call" id="schedule" data-nav-theme="light">
   <div class="wrap">
-    <div class="eyebrow">Inside working hours, not instead of them</div>
-    <h2 class="h2">Flexible weekly schedule.</h2>
-    <p class="lede intro">Here's what a cohort week looks like for a senior leader on AU0009/AU0010/AU0011. Grab any block and move it — the week flexes around your calendar, not the other way around.</p>
-
-    <div class="ws-wrap" id="ws-wrap">
-      <div class="ws-legend">
-        <span class="ws-swatch ws-swatch-train"></span><span>Off-the-job training</span>
-        <span class="ws-swatch ws-swatch-open"></span><span>Open Sessions</span>
+    <div class="book-call-grid">
+      <div class="book-call-left">
+        <h2>Book a<br>discovery call</h2>
+        <a href="https://cal.com/jaikharbanda/30min" class="cta book-call-cta">Book a call</a>
       </div>
-      <div class="ws-cal" id="ws-cal">
-        <div class="ws-cell ws-corner"></div>
-        <div class="ws-cell ws-head">Mon</div>
-        <div class="ws-cell ws-head">Tue</div>
-        <div class="ws-cell ws-head">Wed</div>
-        <div class="ws-cell ws-head">Thu</div>
-        <div class="ws-cell ws-head">Fri</div>
-        <div class="ws-cell ws-head ws-head-weekend">Sat</div>
-        <div class="ws-cell ws-head ws-head-weekend">Sun</div>
-        <!-- Body cells rendered by script below -->
-        <div class="ws-events-layer" id="ws-events-layer"></div>
-      </div>
-      <div class="ws-status" id="ws-status">
-        <span class="ws-pill ws-pill-ok" id="ws-pill-otj"><span class="ws-pill-icon" aria-hidden="true">✓</span><span class="ws-pill-text">Minimum 6h OTJ training (6h booked)</span></span>
-        <span class="ws-pill ws-pill-bad"><span class="ws-pill-icon" aria-hidden="true">✗</span><span class="ws-pill-text">You should attend 1 Open Session</span></span>
-      </div>
-      <div class="ws-foot">Drag any block to a different day or time. Weekends stay blocked out — the programme is synchronous inside working hours by design.</div>
+      <ul class="book-call-list">
+        <li>
+          <span class="arrow" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.1435 5.89174C13.7879 5.53609 13.2113 5.53609 12.8556 5.89174C12.5 6.2474 12.5 6.82403 12.8556 7.17968L16.7652 11.0892H4.84821C4.34524 11.0892 3.9375 11.497 3.9375 11.9999C3.9375 12.5029 4.34524 12.9107 4.84821 12.9107H16.7652L12.8556 16.8203C12.5 17.1759 12.5 17.7525 12.8556 18.1082C13.2113 18.4639 13.7879 18.4639 14.1435 18.1082L19.6078 12.6439C19.9635 12.2883 19.9635 11.7117 19.6078 11.356L14.1435 5.89174Z" fill="currentColor"/></svg>
+          </span>
+          <span>Understand how the AI Leadership programme works</span>
+        </li>
+        <li>
+          <span class="arrow" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.1435 5.89174C13.7879 5.53609 13.2113 5.53609 12.8556 5.89174C12.5 6.2474 12.5 6.82403 12.8556 7.17968L16.7652 11.0892H4.84821C4.34524 11.0892 3.9375 11.497 3.9375 11.9999C3.9375 12.5029 4.34524 12.9107 4.84821 12.9107H16.7652L12.8556 16.8203C12.5 17.1759 12.5 17.7525 12.8556 18.1082C13.2113 18.4639 13.7879 18.4639 14.1435 18.1082L19.6078 12.6439C19.9635 12.2883 19.9635 11.7117 19.6078 11.356L14.1435 5.89174Z" fill="currentColor"/></svg>
+          </span>
+          <span>Explore how it could deliver measurable impact for your organisation</span>
+        </li>
+        <li>
+          <span class="arrow" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.1435 5.89174C13.7879 5.53609 13.2113 5.53609 12.8556 5.89174C12.5 6.2474 12.5 6.82403 12.8556 7.17968L16.7652 11.0892H4.84821C4.34524 11.0892 3.9375 11.497 3.9375 11.9999C3.9375 12.5029 4.34524 12.9107 4.84821 12.9107H16.7652L12.8556 16.8203C12.5 17.1759 12.5 17.7525 12.8556 18.1082C13.2113 18.4639 13.7879 18.4639 14.1435 18.1082L19.6078 12.6439C19.9635 12.2883 19.9635 11.7117 19.6078 11.356L14.1435 5.89174Z" fill="currentColor"/></svg>
+          </span>
+          <span>Confirm Apprenticeship Levy funding eligibility and next steps</span>
+        </li>
+      </ul>
     </div>
   </div>
 </section>
 
 <!-- ============ WHY US ============ -->
-<section class="section" id="why-us">
+<section class="section" id="why-us" data-nav-theme="light">
   <div class="wrap">
     <div class="eyebrow">Why Boom Training</div>
     <h2 class="h2">The delivery model that survives a senior leader's calendar.</h2>
@@ -1138,6 +1327,35 @@
   })();
 </script>
 
+<script>
+  // Adapt nav theme based on which section sits behind it.
+  (function () {
+    var nav = document.querySelector('nav');
+    if (!nav) return;
+    var sections = Array.from(document.querySelectorAll('section[data-nav-theme]'));
+    if (!sections.length) return;
+    function update() {
+      var navH = nav.offsetHeight;
+      var probeY = navH + 4;
+      var current = null;
+      for (var i = 0; i < sections.length; i++) {
+        var r = sections[i].getBoundingClientRect();
+        if (r.top <= probeY && r.bottom > probeY) { current = sections[i]; break; }
+      }
+      if (!current) {
+        // fall back: closest section above the probe line
+        for (var j = sections.length - 1; j >= 0; j--) {
+          if (sections[j].getBoundingClientRect().top <= probeY) { current = sections[j]; break; }
+        }
+      }
+      var theme = current ? current.getAttribute('data-nav-theme') : 'dark';
+      nav.classList.toggle('is-light', theme === 'light');
+    }
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+  })();
+</script>
 
 </body>
 </html>
