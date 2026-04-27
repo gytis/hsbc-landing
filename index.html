@@ -131,10 +131,10 @@
     grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: 24px;
-    padding-top: 18px; padding-bottom: 18px;
+    padding-top: 8px; padding-bottom: 8px;
   }
   .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 14px; letter-spacing: -0.01em; color: var(--almost-wh); }
-  .logo .boom-wordmark { height: 36px; width: auto; display: block; }
+  .logo .boom-wordmark { height: 44px; width: auto; display: block; }
   nav .links { display: flex; justify-content: center; gap: 36px; font-size: 15px; color: var(--almost-wh); font-weight: 400; }
   nav .links a { opacity: 1; display: inline-flex; align-items: center; gap: 6px; }
   nav .links a:hover { color: var(--light-purp); }
@@ -469,26 +469,25 @@
   .bundle-side li::before { content: "✓"; color: var(--almost-wh); font-weight: 600; }
 
   /* ============ ELIGIBILITY ============ */
-  .elig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .elig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 96px; padding-top: 16px; }
   .elig-card {
-    background: var(--almost-wh); border: 1px solid var(--hairline); border-radius: 16px; padding: 32px;
+    background: transparent; border: none; border-radius: 0; padding: 0;
   }
-  .elig-card h4 { font-size: 12px; letter-spacing: 0.2em; color: var(--dark); text-transform: uppercase; font-weight: 600; margin-bottom: 24px; }
+  .elig-card h4 { font-size: 24px; line-height: 1.2; letter-spacing: -0.01em; color: var(--dark); font-weight: 500; margin-bottom: 16px; }
   .elig-card ul { list-style: none; }
   .elig-card li {
-    padding: 16px 0; border-top: 1px solid var(--hairline);
-    display: flex; gap: 16px; align-items: flex-start; font-size: 16px;
+    padding: 8px 0;
+    display: flex; gap: 16px; align-items: flex-start; font-size: 18px;
   }
-  .elig-card li:last-child { border-bottom: 1px solid var(--hairline); }
   .elig-card .check {
     flex-shrink: 0;
     width: 40px; height: 40px; border-radius: 50%;
-    background: var(--dark); color: var(--almost-wh);
+    background: var(--dark); color: #DEEDE7;
     display: inline-flex; align-items: center; justify-content: center;
   }
   .elig-card .check svg { display: block; width: 20px; height: 20px; }
   .elig-card li b { display: block; color: var(--dark); margin-bottom: 4px; font-weight: 600; }
-  .elig-card li span { color: var(--dark); font-size: 14px; line-height: 1.5; }
+  .elig-card li span { color: var(--dark); font-size: 18px; line-height: 1.5; }
 
   /* ============ CREDENTIALS ============ */
   .creds { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 32px; }
@@ -795,7 +794,6 @@
 <section class="hero-dark" data-nav-theme="dark">
   <div class="wrap">
     <div class="hero-copy">
-      <span class="date-pill">May 2026</span>
       <h1>AI Leadership</h1>
       <p class="sub">Build the skills, strategy and judgment to lead AI transformation</p>
       <div class="ctas">
@@ -984,7 +982,7 @@
 </section>
 
 <!-- ============ ELIGIBILITY ============ -->
-<section class="section" id="eligibility" data-nav-theme="light">
+<section class="section" id="eligibility" data-nav-theme="light" style="background: #DEEDE7;">
   <div class="wrap">
     <div class="eyebrow">Eligibility &amp; funding</div>
     <h2 class="h2">Eligibility, in plain English.</h2>
@@ -1011,57 +1009,11 @@
   </div>
 </section>
 
-<!-- ============ BOOK A DISCOVERY CALL ============ -->
-<section class="section cream book-call" id="schedule" data-nav-theme="light">
-  <div class="wrap">
-    <div class="book-call-grid">
-      <div class="book-call-left">
-        <h2>Book a<br>discovery call</h2>
-        <a href="https://cal.com/jaikharbanda/30min" class="cta book-call-cta">Book a call</a>
-      </div>
-      <ul class="book-call-list">
-        <li>
-          <span class="arrow" aria-hidden="true">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.1435 5.89174C13.7879 5.53609 13.2113 5.53609 12.8556 5.89174C12.5 6.2474 12.5 6.82403 12.8556 7.17968L16.7652 11.0892H4.84821C4.34524 11.0892 3.9375 11.497 3.9375 11.9999C3.9375 12.5029 4.34524 12.9107 4.84821 12.9107H16.7652L12.8556 16.8203C12.5 17.1759 12.5 17.7525 12.8556 18.1082C13.2113 18.4639 13.7879 18.4639 14.1435 18.1082L19.6078 12.6439C19.9635 12.2883 19.9635 11.7117 19.6078 11.356L14.1435 5.89174Z" fill="currentColor"/></svg>
-          </span>
-          <span>Understand how the AI Leadership programme works</span>
-        </li>
-        <li>
-          <span class="arrow" aria-hidden="true">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.1435 5.89174C13.7879 5.53609 13.2113 5.53609 12.8556 5.89174C12.5 6.2474 12.5 6.82403 12.8556 7.17968L16.7652 11.0892H4.84821C4.34524 11.0892 3.9375 11.497 3.9375 11.9999C3.9375 12.5029 4.34524 12.9107 4.84821 12.9107H16.7652L12.8556 16.8203C12.5 17.1759 12.5 17.7525 12.8556 18.1082C13.2113 18.4639 13.7879 18.4639 14.1435 18.1082L19.6078 12.6439C19.9635 12.2883 19.9635 11.7117 19.6078 11.356L14.1435 5.89174Z" fill="currentColor"/></svg>
-          </span>
-          <span>Explore how it could deliver measurable impact for your organisation</span>
-        </li>
-        <li>
-          <span class="arrow" aria-hidden="true">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.1435 5.89174C13.7879 5.53609 13.2113 5.53609 12.8556 5.89174C12.5 6.2474 12.5 6.82403 12.8556 7.17968L16.7652 11.0892H4.84821C4.34524 11.0892 3.9375 11.497 3.9375 11.9999C3.9375 12.5029 4.34524 12.9107 4.84821 12.9107H16.7652L12.8556 16.8203C12.5 17.1759 12.5 17.7525 12.8556 18.1082C13.2113 18.4639 13.7879 18.4639 14.1435 18.1082L19.6078 12.6439C19.9635 12.2883 19.9635 11.7117 19.6078 11.356L14.1435 5.89174Z" fill="currentColor"/></svg>
-          </span>
-          <span>Confirm Apprenticeship Levy funding eligibility and next steps</span>
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
-
 <!-- ============ WHY US ============ -->
 <section class="section" id="why-us" data-nav-theme="light">
   <div class="wrap">
-    <div class="eyebrow">Why Boom Training</div>
-    <h2 class="h2">The delivery model that survives a senior leader's calendar.</h2>
-    <p class="lede intro">Cohort sprints with real deadlines. 1-on-1 feedback from active AI practitioners at Meta, Google, Spotify, Vinted, and elsewhere. The Protégé Effect — reviewing junior work cements the material. Async content, synchronous support. Built for people whose learning is priority three after family and work.</p>
-
-    <div style="margin-top: 48px;">
-      <div class="logos-label">Mentors bring first-hand experience from</div>
-      <div class="mentor-strip">
-        <img class="mentor-logo-img" src="https://cdn.prod.website-files.com/67e119ca88293b07f55b074e/67e1687c4e329e7586537918_edu-cambridge.png" alt="University of Cambridge">
-        <img class="mentor-logo-img" src="https://cdn.prod.website-files.com/67e119ca88293b07f55b074e/67e1687c4e329e7586537916_edu-google.svg" alt="Google">
-        <img class="mentor-logo-img" src="https://cdn.prod.website-files.com/67e119ca88293b07f55b074e/67e1687c4e329e7586537917_edu-amazon.svg" alt="Amazon">
-        <img class="mentor-logo-img" src="https://cdn.prod.website-files.com/67e119ca88293b07f55b074e/67e1687c4e329e758653791a_edu-meta.svg" alt="Meta">
-        <img class="mentor-logo-img" src="https://cdn.prod.website-files.com/67e119ca88293b07f55b074e/67e1687c4e329e758653791b_edu-spotify.svg" alt="Spotify">
-        <img class="mentor-logo-img" src="https://cdn.prod.website-files.com/67e119ca88293b07f55b074e/67e1687c4e329e758653791c_edu-vinted.svg" alt="Vinted">
-        <img class="mentor-logo-img" src="https://cdn.prod.website-files.com/67e119ca88293b07f55b074e/67e1687c4e329e758653791d_edu-oxford-uni.png" alt="University of Oxford">
-      </div>
-    </div>
+    <h2 class="h2" style="text-align: center; max-width: 780px; margin-left: auto; margin-right: auto;">The delivery model that survives a senior leader's calendar.</h2>
+    <p class="lede intro" style="text-align: center; margin-left: auto; margin-right: auto;">Cohort sprints with real deadlines. 1-on-1 feedback from active AI practitioners at Meta, Google, Spotify, Vinted, and elsewhere. The Protégé Effect — reviewing junior work cements the material. Async content, synchronous support. Built for people whose learning is priority three after family and work.</p>
 
     <div style="margin-top: 48px;">
       <div class="logos-label">Our clients &amp; graduates work at</div>
@@ -1115,6 +1067,38 @@
           <span>Senior Financial Data Analyst @ Moody's</span>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BOOK A DISCOVERY CALL ============ -->
+<section class="section cream book-call" id="schedule" data-nav-theme="light">
+  <div class="wrap">
+    <div class="book-call-grid">
+      <div class="book-call-left">
+        <h2>Book a<br>discovery call</h2>
+        <a href="https://cal.com/jaikharbanda/30min" class="cta book-call-cta">Book a call</a>
+      </div>
+      <ul class="book-call-list">
+        <li>
+          <span class="arrow" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.1435 5.89174C13.7879 5.53609 13.2113 5.53609 12.8556 5.89174C12.5 6.2474 12.5 6.82403 12.8556 7.17968L16.7652 11.0892H4.84821C4.34524 11.0892 3.9375 11.497 3.9375 11.9999C3.9375 12.5029 4.34524 12.9107 4.84821 12.9107H16.7652L12.8556 16.8203C12.5 17.1759 12.5 17.7525 12.8556 18.1082C13.2113 18.4639 13.7879 18.4639 14.1435 18.1082L19.6078 12.6439C19.9635 12.2883 19.9635 11.7117 19.6078 11.356L14.1435 5.89174Z" fill="currentColor"/></svg>
+          </span>
+          <span>Understand how the AI Leadership programme works</span>
+        </li>
+        <li>
+          <span class="arrow" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.1435 5.89174C13.7879 5.53609 13.2113 5.53609 12.8556 5.89174C12.5 6.2474 12.5 6.82403 12.8556 7.17968L16.7652 11.0892H4.84821C4.34524 11.0892 3.9375 11.497 3.9375 11.9999C3.9375 12.5029 4.34524 12.9107 4.84821 12.9107H16.7652L12.8556 16.8203C12.5 17.1759 12.5 17.7525 12.8556 18.1082C13.2113 18.4639 13.7879 18.4639 14.1435 18.1082L19.6078 12.6439C19.9635 12.2883 19.9635 11.7117 19.6078 11.356L14.1435 5.89174Z" fill="currentColor"/></svg>
+          </span>
+          <span>Explore how it could deliver measurable impact for your organisation</span>
+        </li>
+        <li>
+          <span class="arrow" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.1435 5.89174C13.7879 5.53609 13.2113 5.53609 12.8556 5.89174C12.5 6.2474 12.5 6.82403 12.8556 7.17968L16.7652 11.0892H4.84821C4.34524 11.0892 3.9375 11.497 3.9375 11.9999C3.9375 12.5029 4.34524 12.9107 4.84821 12.9107H16.7652L12.8556 16.8203C12.5 17.1759 12.5 17.7525 12.8556 18.1082C13.2113 18.4639 13.7879 18.4639 14.1435 18.1082L19.6078 12.6439C19.9635 12.2883 19.9635 11.7117 19.6078 11.356L14.1435 5.89174Z" fill="currentColor"/></svg>
+          </span>
+          <span>Confirm Apprenticeship Levy funding eligibility and next steps</span>
+        </li>
+      </ul>
     </div>
   </div>
 </section>
